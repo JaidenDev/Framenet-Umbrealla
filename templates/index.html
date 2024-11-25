@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Framenet Umbrella</title>
+    <link rel="icon" href="/static/logo.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        header img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .domain-list {
+            margin-top: 20px;
+        }
+        .domain-list li {
+            padding: 5px;
+            background-color: #444;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #bbb;
+        }
+        .footer a {
+            color: #bbb;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png" alt="Logo">
+        <h1>Framenet Umbrella - Blocked Domains</h1>
+    </header>
+    <div class="container">
+        <h2>Current Blocked Domains</h2>
+        <ul class="domain-list">
+            {% for domain, reason in block_list.items() %}
+                <li>{{ domain }} - {{ reason }}</li>
+            {% else %}
+                <li>No blocked domains.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Add or Remove a Domain</h2>
+        <form method="POST">
+            <input type="text" name="domain" placeholder="Domain to block" required>
+            <input type="text" name="reason" placeholder="Reason for blocking" required>
+            <input type="submit" name="action" value="Add">
+        </form>
+
+        <form method="POST">
+            <input type="text" name="domain" placeholder="Domain to remove" required>
+            <input type="submit" name="action" value="Remove">
+        </form>
+
+        <a href="/logout" style="color:white;">Logout</a>
+    </div>
+
+    <div class="footer">
+        <p>&copy;2025 Framenet Umbrella, By FinDev</p>
+        <p><a href="http://jaiden.pro">Visit my site</a> | <a href="https://github.com/JaidenDev/Framenet-Umbrella">Visit the project</a></p>
+    </div>
+</body>
+</html>
